@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Route, Router, Switch } from "react-router-native";
 import { createMemoryHistory } from "history";
-import { Home } from "./components/Home";
+import { HomeContentWithRouter } from "./components/Home/HomeContent";
 
 /**
  * Stores users history. It is required by react-router,
@@ -10,7 +10,7 @@ import { Home } from "./components/Home";
 const history = createMemoryHistory();
 
 /**
- * Styles for MainContent
+ * Styles for `MainContents`
  */
 const mainContentStyles = StyleSheet.create({
     container: {
@@ -30,7 +30,7 @@ export class MainContent extends React.Component {
             <View style={mainContentStyles.container}>
                 <Router history={history}>
                     <Switch>
-                        <Route component={Home}></Route>
+                        <Route component={HomeContentWithRouter}></Route>
                     </Switch>
                 </Router>
             </View>
