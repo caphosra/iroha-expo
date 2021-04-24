@@ -1,39 +1,86 @@
+import { Ionicons } from "@expo/vector-icons";
+import * as Font from "expo-font";
+import {
+    Body,
+    Button,
+    Container,
+    Content,
+    Header,
+    Icon,
+    Left,
+    Right,
+    Text
+} from "native-base";
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Route, Router, Switch } from "react-router-native";
-import { createMemoryHistory } from "history";
+import {
+    Route,
+    MemoryRouter,
+    Switch
+} from "react-router-native";
+
+import { MacchaFooterWithRouter } from "./components/Footer";
 import { HomeContentWithRouter } from "./components/Home/HomeContent";
+import { macchaColor } from "./ThemeColor";
 
-/**
- * Stores users history. It is required by react-router,
- */
-const history = createMemoryHistory();
+interface IMainContentProps { }
 
-/**
- * Styles for `MainContents`
- */
-const mainContentStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
-});
+interface IMainContentState {
+    isReady: boolean;
+}
 
 /**
  * A component which works as the root and has all of the components.
  */
-export class MainContent extends React.Component {
+export class MainContent extends React.Component<IMainContentProps, IMainContentState> {
+    constructor(props: IMainContentProps) {
+        super(props);
+        this.state = {
+            isReady: false,
+        };
+    }
+
+    async componentDidMount() {
+        await Font.loadAsync({
+            Roboto: require('native-base/Fonts/Roboto.ttf'),
+            Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+            ...Ionicons.font,
+        });
+        this.setState({
+            isReady: true
+        });
+    }
+
     render() {
+        if (!this.state.isReady) {
+            return (
+                <Text>Now loading...</Text>
+            );
+        }
+
         return (
-            <View style={mainContentStyles.container}>
-                <Router history={history}>
-                    <Switch>
-                        <Route component={HomeContentWithRouter}></Route>
-                    </Switch>
-                </Router>
-            </View>
+            <Container>
+                <Header androidStatusBarColor={macchaColor} style={{ backgroundColor: macchaColor }}>
+                    <Left>
+                        <Button transparent>
+                            <Icon name='menu' />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Text style={{ color: "white" }}>Maccha</Text>
+                    </Body>
+                    <Right />
+                </Header>
+                <Content>
+                    <MemoryRouter>
+                        <Switch>
+                            <Route component={HomeContentWithRouter} />
+                        </Switch>
+                    </MemoryRouter>
+                </Content>
+                <MemoryRouter>
+                    <MacchaFooterWithRouter />
+                </MemoryRouter>
+            </Container>
         );
     }
 }
