@@ -19,7 +19,7 @@ import {
 } from "react-router-native";
 
 import { MacchaFooterWithRouter } from "./components/Footer";
-import { HomeContentWithRouter } from "./components/Home/HomeContent";
+import { HomeContentWithRouter } from "./components/HomeContent";
 import { macchaColor } from "./ThemeColor";
 
 interface IMainContentProps { }
@@ -41,9 +41,9 @@ export class MainContent extends React.Component<IMainContentProps, IMainContent
 
     async componentDidMount() {
         await Font.loadAsync({
-            Roboto: require('native-base/Fonts/Roboto.ttf'),
-            Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-            ...Ionicons.font,
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            ...Ionicons.font
         });
         this.setState({
             isReady: true
