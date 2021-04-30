@@ -1,10 +1,15 @@
 import React from "react";
 import { H1, Text } from "native-base";
 import { Image, StyleSheet, View } from "react-native";
-import { RouteComponentProps, withRouter } from "react-router-native";
 import { getRandomJoke } from "../logics/GenerateJokes";
 
+/**
+ * Styles for `HomeContent`.
+ */
 const homeContentStyles = StyleSheet.create({
+    container: {
+        alignItems: "center"
+    },
     title: {
         margin: 30
     },
@@ -19,19 +24,12 @@ const homeContentStyles = StyleSheet.create({
 });
 
 /**
- * Properties of `HomeContent`.
- *
- * Note that the interface inherits `RouteComponentProps` due to using users history.
- */
-export interface HomeContentProps extends RouteComponentProps { }
-
-/**
  * A main UI of Maccha. All of the UIs would be invoked via the content.
  */
-export class HomeContent extends React.Component<HomeContentProps> {
+export class HomeContent extends React.Component {
     render() {
         return (
-            <View style={{ alignItems: "center" }}>
+            <View style={homeContentStyles.container}>
                 <H1 style={homeContentStyles.title}>
                     Macchaへようこそ!
                 </H1>
@@ -50,10 +48,3 @@ export class HomeContent extends React.Component<HomeContentProps> {
         );
     }
 }
-
-/**
- * A class which is made of `HomeContent` and `Router`.
- *
- * For more information, please refer `HomeContent` or read react-router documentations.
- */
-export const HomeContentWithRouter = withRouter(HomeContent);

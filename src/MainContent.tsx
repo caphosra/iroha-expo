@@ -1,14 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import {
-    Body,
-    Button,
     Container,
     Content,
-    Header,
-    Icon,
-    Left,
-    Right,
     Text
 } from "native-base";
 import React from "react";
@@ -19,8 +13,9 @@ import {
 } from "react-router-native";
 
 import { MacchaFooterWithRouter } from "./components/Footer";
-import { HomeContentWithRouter } from "./components/HomeContent";
-import { macchaColor } from "./ThemeColor";
+import { MacchaHeader } from "./components/Header";
+import { HomeContent } from "./components/HomeContent";
+import { TakeOrder } from "./components/TakeOrder";
 
 interface IMainContentProps { }
 
@@ -59,25 +54,13 @@ export class MainContent extends React.Component<IMainContentProps, IMainContent
 
         return (
             <Container>
-                <Header androidStatusBarColor={macchaColor} style={{ backgroundColor: macchaColor }}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Text style={{ color: "white" }}>Maccha</Text>
-                    </Body>
-                    <Right />
-                </Header>
-                <Content>
-                    <MemoryRouter>
-                        <Switch>
-                            <Route component={HomeContentWithRouter} />
-                        </Switch>
-                    </MemoryRouter>
-                </Content>
                 <MemoryRouter>
+                    <MacchaHeader />
+                    <Content>
+                        <Switch>
+                            <Route path="/" component={HomeContent} />
+                        </Switch>
+                    </Content>
                     <MacchaFooterWithRouter />
                 </MemoryRouter>
             </Container>
