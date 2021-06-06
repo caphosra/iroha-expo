@@ -15,6 +15,8 @@ import {
 import { MacchaFooterWithRouter } from "./components/Footer";
 import { MacchaHeader } from "./components/Header";
 import { HomeContent } from "./components/HomeContent";
+import { NoticeList } from "./components/NoticeList";
+import { OrderList } from "./components/OrderList";
 import { TakeOrder } from "./components/TakeOrder";
 
 interface IMainContentProps { }
@@ -58,6 +60,9 @@ export class MainContent extends React.Component<IMainContentProps, IMainContent
                     <MacchaHeader />
                     <Content>
                         <Switch>
+                            <Route path="/done" component={NoticeList} />
+                            <Route path="/cook" component={OrderList} />
+                            <Route path="/take" component={TakeOrder} />
                             <Route path="/" component={HomeContent} />
                         </Switch>
                     </Content>
