@@ -1,2 +1,2 @@
-export const irohaColor: string = "#3E6225";
-export const darkIrohaColor: string = "#638649";
+export const irohaColor: string = "#37A8E6";
+export const darkIrohaColor: string = "#4747FF";
