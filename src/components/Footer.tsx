@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router-native";
 
-import { darkMacchaColor, macchaColor } from "../ThemeColor";
+import { darkIrohaColor, irohaColor } from "../ThemeColor";
 
 /**
  * Properties of `FooterButton`.
@@ -32,8 +32,8 @@ class FooterButton extends React.Component<IFooterButtonProps> {
     render() {
         let style = {
             backgroundColor: this.props.here == this.props.jumpTo
-                ? darkMacchaColor
-                : macchaColor
+                ? darkIrohaColor
+                : irohaColor
         };
 
         return (
@@ -46,17 +46,17 @@ class FooterButton extends React.Component<IFooterButtonProps> {
 }
 
 /**
- * Properties of `MacchaFooter`.
+ * Properties of `IrohaFooter`.
  *
  * Note that the interface inherits `RouteComponentProps` due to using users history.
  */
-export interface IMacchaFooterProps extends RouteComponentProps { }
+export interface IIrohaFooterProps extends RouteComponentProps { }
 
 /**
  * A component which draw a footer with buttons to go another page.
  */
-export class MacchaFooter extends React.Component<IMacchaFooterProps> {
-    constructor(props: IMacchaFooterProps) {
+export class IrohaFooter extends React.Component<IIrohaFooterProps> {
+    constructor(props: IIrohaFooterProps) {
         super(props);
     }
 
@@ -69,7 +69,7 @@ export class MacchaFooter extends React.Component<IMacchaFooterProps> {
 
         return (
             <Footer>
-                <FooterTab style={{ backgroundColor: macchaColor }}>
+                <FooterTab style={{ backgroundColor: irohaColor }}>
                     <FooterButton
                         icon="home-outline"
                         text="ホーム"
@@ -105,8 +105,8 @@ export class MacchaFooter extends React.Component<IMacchaFooterProps> {
 }
 
 /**
- * A class which is made of `MacchaFooter` and `Router`.
+ * A class which is made of `IrohaFooter` and `Router`.
  *
- * For more information, please refer `MacchaFooter` or read react-router documentations.
+ * For more information, please refer `IrohaFooter` or read react-router documentations.
  */
-export const MacchaFooterWithRouter = withRouter(MacchaFooter);
+export const IrohaFooterWithRouter = withRouter(IrohaFooter);

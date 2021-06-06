@@ -8,22 +8,22 @@ import {
     Title
 } from "native-base";
 import React from "react";
-import { macchaColor } from "../ThemeColor";
+import { irohaColor } from "../ThemeColor";
 
 /**
  * A component which draw a header.
  */
-export class MacchaHeader extends React.Component {
+export class IrohaHeader extends React.Component {
     render() {
         return (
-            <Header androidStatusBarColor={macchaColor} style={{ backgroundColor: macchaColor }}>
+            <Header androidStatusBarColor={irohaColor} style={{ backgroundColor: irohaColor }}>
                 <Left>
                     <Button transparent>
                         <Icon name='menu' />
                     </Button>
                 </Left>
                 <Body>
-                    <Title>Maccha</Title>
+                    <Title>Iroha</Title>
                 </Body>
                 <Right />
             </Header>

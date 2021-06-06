@@ -12,8 +12,8 @@ import {
     Switch
 } from "react-router-native";
 
-import { MacchaFooterWithRouter } from "./components/Footer";
-import { MacchaHeader } from "./components/Header";
+import { IrohaFooterWithRouter } from "./components/Footer";
+import { IrohaHeader } from "./components/Header";
 import { HomeContent } from "./components/HomeContent";
 import { NoticeList } from "./components/NoticeList";
 import { OrderList } from "./components/OrderList";
@@ -57,7 +57,7 @@ export class MainContent extends React.Component<IMainContentProps, IMainContent
         return (
             <Container>
                 <MemoryRouter>
-                    <MacchaHeader />
+                    <IrohaHeader />
                     <Content>
                         <Switch>
                             <Route path="/done" component={NoticeList} />
@@ -66,7 +66,7 @@ export class MainContent extends React.Component<IMainContentProps, IMainContent
                             <Route path="/" component={HomeContent} />
                         </Switch>
                     </Content>
-                    <MacchaFooterWithRouter />
+                    <IrohaFooterWithRouter />
                 </MemoryRouter>
             </Container>
         );

@@ -1,2 +1,2 @@
-export const macchaColor: string = "#3E6225";
-export const darkMacchaColor: string = "#638649";
+export const irohaColor: string = "#3E6225";
+export const darkIrohaColor: string = "#638649";

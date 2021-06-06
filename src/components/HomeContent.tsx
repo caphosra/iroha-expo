@@ -24,14 +24,14 @@ const homeContentStyles = StyleSheet.create({
 });
 
 /**
- * A main UI of Maccha. All of the UIs would be invoked via the content.
+ * A main UI of Iroha. All of the UIs would be invoked via the content.
  */
 export class HomeContent extends React.Component {
     render() {
         return (
             <View style={homeContentStyles.container}>
                 <H1 style={homeContentStyles.title}>
-                    Macchaへようこそ!
+                    Irohaへようこそ!
                 </H1>
                 <Image
                     style={homeContentStyles.image}
