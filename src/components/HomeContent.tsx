@@ -15,8 +15,8 @@ const homeContentStyles = StyleSheet.create({
     },
     image: {
         margin: 30,
-        width: 128,
-        height: 128
+        width: 256,
+        height: 256
     },
     content: {
         margin: 10
@@ -30,19 +30,15 @@ export class HomeContent extends React.Component {
     render() {
         return (
             <View style={homeContentStyles.container}>
-                <H1 style={homeContentStyles.title}>
-                    Irohaへようこそ!
-                </H1>
                 <Image
                     style={homeContentStyles.image}
                     source={require("../../assets/logo.png")}
                 />
+                <H1 style={homeContentStyles.content}>
+                    喫茶班システム - Iroha
+                </H1>
                 <Text style={homeContentStyles.content}>
-                    下のタブからやるべき事へと移りましょう!{"\n"}
-                    何もすることがない人はいないはずですからね!
-                </Text>
-                <Text style={homeContentStyles.content}>
-                    {getRandomJoke()}
+                    Designed by capra314cabra (70th)
                 </Text>
             </View>
         );
