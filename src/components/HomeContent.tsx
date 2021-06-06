@@ -35,7 +35,7 @@ export class HomeContent extends React.Component {
                 </H1>
                 <Image
                     style={homeContentStyles.image}
-                    source={require("../../assets/icon.png")}
+                    source={require("../../assets/logo.png")}
                 />
                 <Text style={homeContentStyles.content}>
                     下のタブからやるべき事へと移りましょう!{"\n"}

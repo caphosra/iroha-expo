@@ -1,9 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
+import { preventAutoHideAsync, hideAsync } from "expo-splash-screen";
 import {
     Container,
-    Content,
-    Text
+    Content
 } from "native-base";
 import React from "react";
 import {
@@ -37,6 +37,7 @@ export class MainContent extends React.Component<IMainContentProps, IMainContent
     }
 
     async componentDidMount() {
+        await preventAutoHideAsync();
         await Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
             Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
@@ -45,13 +46,12 @@ export class MainContent extends React.Component<IMainContentProps, IMainContent
         this.setState({
             isReady: true
         });
+        await hideAsync();
     }
 
     render() {
         if (!this.state.isReady) {
-            return (
-                <Text>Now loading...</Text>
-            );
+            return null;
         }
 
         return (
