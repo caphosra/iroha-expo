@@ -1,7 +1,6 @@
 import React from "react";
 import { H1, Text } from "native-base";
 import { Image, StyleSheet, View } from "react-native";
-import { getRandomJoke } from "../logics/GenerateJokes";
 
 /**
  * Styles for `HomeContent`.
