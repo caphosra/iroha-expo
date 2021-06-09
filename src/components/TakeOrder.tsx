@@ -28,12 +28,12 @@ const takeOrderStyles = StyleSheet.create({
 /**
  * Properties of `MenuPicker`.
  */
- interface IMenuPickerProps {
+interface IMenuPickerProps {
     name: string;
 }
 
 /**
- * A component which is a button used for the footer.
+ * A component which generates a picker which user can choose an item from the list.
  */
 class MenuPicker extends React.Component<IMenuPickerProps> {
     constructor(props: IMenuPickerProps) {
