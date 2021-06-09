@@ -79,7 +79,7 @@ export class IrohaFooter extends React.Component<IIrohaFooterProps> {
                     />
                     <FooterButton
                         icon="pencil-outline"
-                        text="注文をとる"
+                        text="伝票"
                         here={location}
                         jumpTo="/take"
                         onPress={this.onButtonClicked}
