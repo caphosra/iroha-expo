@@ -86,7 +86,7 @@ export class IrohaFooter extends React.Component<IIrohaFooterProps> {
                     />
                     <FooterButton
                         icon="nutrition-outline"
-                        text="現在の注文"
+                        text="注文履歴"
                         here={location}
                         jumpTo="/cook"
                         onPress={this.onButtonClicked}
