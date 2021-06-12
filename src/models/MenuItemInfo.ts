@@ -12,4 +12,6 @@
  */
 export interface IMenuItemDatabase {
     init(): Promise<void>;
+    get(menu_id: number): Promise<IMenuItemInfo>;
+    size(): Promise<number>;
 }

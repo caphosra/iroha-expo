@@ -26,4 +26,7 @@ export interface IOrderInfo {
  */
 export interface IOrderDatabase {
     init(): Promise<void>;
+    get(status: OrderStatus): Promise<IOrderInfo[]>;
+    post(order: IOrderInfo): Promise<void>;
+    mark_as(order_id: number, status: OrderStatus): Promise<void>;
 }
