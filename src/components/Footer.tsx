@@ -1,10 +1,4 @@
-import {
-    Button,
-    Footer,
-    FooterTab,
-    Icon,
-    Text
-} from "native-base";
+import { Button, Footer, FooterTab, Icon, Text } from "native-base";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router-native";
 

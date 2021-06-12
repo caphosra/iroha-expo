@@ -1,13 +1,6 @@
-import {
-    Body,
-    Button,
-    Header,
-    Icon,
-    Left,
-    Right,
-    Title
-} from "native-base";
+import { Body, Button, Header, Icon, Left, Right, Title } from "native-base";
 import React from "react";
+
 import { irohaColor } from "../ThemeColor";
 
 /**

@@ -1,16 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import { preventAutoHideAsync, hideAsync } from "expo-splash-screen";
-import {
-    Container,
-    Content
-} from "native-base";
+import { Container, Content } from "native-base";
 import React from "react";
-import {
-    Route,
-    MemoryRouter,
-    Switch
-} from "react-router-native";
+import { Route, MemoryRouter, Switch } from "react-router-native";
 
 import { IrohaFooterWithRouter } from "./components/Footer";
 import { IrohaHeader } from "./components/Header";
