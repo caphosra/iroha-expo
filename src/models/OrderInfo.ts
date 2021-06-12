@@ -3,7 +3,6 @@
  */
 export enum OrderStatus {
     POSTED,
-    COOKING,
     READY,
     SERVED,
     PAID
@@ -13,19 +12,18 @@ export enum OrderStatus {
  * A class that holds information about the single order.
  */
 export interface IOrderInfo {
-    id: number;
-    tableID: number;
-    date: Date;
+    order_id: number;
+    table_id: number;
+    posted: Date;
+    ready: Date;
+    served: Date;
+    paid: Date;
     orders: number[];
-    status: number;
 }
 
 /**
  * Represents a database which stores a lot of information about orders.
  */
 export interface IOrderDatabase {
-    init(): void;
-    get_by_id(id: number): IOrderInfo;
-    get_by_table_id(id: number): IOrderInfo[];
-    get_by_status(status: OrderStatus): IOrderInfo[];
+    init(): Promise<void>;
 }
