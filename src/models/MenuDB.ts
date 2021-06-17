@@ -13,8 +13,8 @@ export interface IMenuItemInfo {
  * Represents a database which stores a menu.
  */
 export interface IMenuDatabase {
-    get(menu_id: number): Promise<IMenuItemInfo>;
-    size(): Promise<number>;
+    get(menu_id: number): IMenuItemInfo;
+    size(): number;
 }
 
 /**

@@ -27,12 +27,12 @@ export class MenuDatabase implements IMenuDatabase {
         }
     ];
 
-    async get(menu_id: number): Promise<IMenuItemInfo> {
+    get(menu_id: number): IMenuItemInfo {
         return this.menu
             .filter((item) => item.menu_id == menu_id)[0];
     }
 
-    async size(): Promise<number> {
+    size(): number {
         return this.menu.length;
     }
 }
