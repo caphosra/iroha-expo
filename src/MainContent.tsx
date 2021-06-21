@@ -10,7 +10,7 @@ import { IrohaHeader } from "./components/Header";
 import { HomeContent } from "./components/HomeContent";
 import { NoticeList } from "./components/NoticeList";
 import { OrderList } from "./components/OrderList";
-import { TakeOrder } from "./components/TakeOrder";
+import { TakeOrderWithRouter } from "./components/TakeOrder";
 
 interface IMainContentProps { }
 
@@ -55,7 +55,7 @@ export class MainContent extends React.Component<IMainContentProps, IMainContent
                         <Switch>
                             <Route path="/done" component={NoticeList} />
                             <Route path="/cook" component={OrderList} />
-                            <Route path="/take" component={TakeOrder} />
+                            <Route path="/take" component={TakeOrderWithRouter} />
                             <Route path="/" component={HomeContent} />
                         </Switch>
                     </Content>
