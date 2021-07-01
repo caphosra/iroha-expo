@@ -75,9 +75,16 @@ class MenuPicker extends React.Component<IMenuPickerProps> {
 }
 
 /**
+ * Properties of `TableIDPicker`.
+ */
+ interface ITableIDPickerProps {
+    onChanged: (value: number) => void;
+}
+
+/**
  * A component which generates a picker which user can specify a table.
  */
-class TableIDPicker extends React.Component {
+class TableIDPicker extends React.Component<ITableIDPickerProps> {
     private readonly MAXIMUM_TABLE_SIZE = 6;
 
     render() {
@@ -89,7 +96,9 @@ class TableIDPicker extends React.Component {
                         mode="dropdown"
                         iosIcon={<Icon name="arrow-down" />}
                         selectedValue={"key0"}
-                        onValueChange={() => {}}
+                        onValueChange={(val) => {
+                            this.props.onChanged(val);
+                        }}
                         style= {takeOrderStyles.picker}
                     >
                         {
@@ -150,9 +159,23 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
         this.props.history.push("/");
     }
 
+    onTableIDChanged = (table_id: number) => {
+        let order = this.state.order;
+        order.table_id = table_id;
+
+        this.setState({
+            order: order
+        });
+    }
+
     onMenuItemChanged = (order_id: number) => {
         return (val: number) => {
-            this.state.order.orders[order_id] = val;
+            let order = this.state.order;
+            order.orders[order_id] = val;
+
+            this.setState({
+                order: order
+            });
         };
     }
 
@@ -163,7 +186,7 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
                     伝票をとる
                 </H1>
                 <Form style={takeOrderStyles.form}>
-                    <TableIDPicker />
+                    <TableIDPicker onChanged={this.onTableIDChanged} />
                     {
                         Array.from(Array(menuDatabase.size()).keys())
                             .map((id) => (
