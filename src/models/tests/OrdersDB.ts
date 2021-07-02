@@ -16,7 +16,7 @@ export class OrdersDatabase implements IOrdersDatabase {
             ready: get_infinity_date(),
             served: get_infinity_date(),
             paid: get_infinity_date(),
-            orders: [0, 1]
+            orders: [0, 1, 0, 0]
         },
         {
             order_id: 1,
@@ -25,7 +25,7 @@ export class OrdersDatabase implements IOrdersDatabase {
             ready: get_infinity_date(),
             served: get_infinity_date(),
             paid: get_infinity_date(),
-            orders: [0, 1, 2]
+            orders: [0, 1, 2, 0]
         },
         {
             order_id: 2,
@@ -34,7 +34,7 @@ export class OrdersDatabase implements IOrdersDatabase {
             ready: get_infinity_date(),
             served: get_infinity_date(),
             paid: get_infinity_date(),
-            orders: [1, 2]
+            orders: [1, 2, 0, 0]
         }
     ];
 
