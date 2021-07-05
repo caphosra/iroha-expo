@@ -59,6 +59,12 @@ export class OrdersDatabase implements IOrdersDatabase {
         this.order_lists.push(order);
     }
 
+    async delete(order_id: number): Promise<void> {
+        this.order_lists = this.order_lists.filter(
+            (value) => value.order_id != order_id
+        );
+    }
+
     async mark_as(order_id: number, status: OrderStatus): Promise<void> {
         let specified = this.order_lists.filter((order) => order.order_id == order_id);
 
