@@ -9,7 +9,7 @@ import { IOrderInfo, ordersDatabase, OrderStatus } from "../models/OrdersDB";
 /**
  * Styles for `OrderList`.
  */
- const orderListStyles = StyleSheet.create({
+const orderListStyles = StyleSheet.create({
     button: {
         marginTop: 30,
         marginLeft: "3%",
