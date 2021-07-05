@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Button } from "native-base";
 import { Alert, StyleSheet, View } from "react-native";
-import { RouteComponentProps, withRouter } from "react-router-native";
+import { RouteComponentProps } from "react-router-native";
 
 import { OrderListView } from "./OrderListView";
 import { IOrderInfo, ordersDatabase, OrderStatus } from "../models/OrdersDB";
