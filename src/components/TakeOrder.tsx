@@ -1,8 +1,9 @@
 import React from "react";
-import { H1, Form, Item, Button, Label, Picker, Icon, Text } from "native-base";
+import { H1, Form, Button, Text } from "native-base";
 import { Alert, StyleSheet, View } from "react-native";
 import { RouteComponentProps, withRouter } from "react-router-native";
 
+import { ContentsPicker } from "./ContentsPicker";
 import { menuDatabase } from "../models/MenuDB";
 import { IOrderInfo, ordersDatabase, get_infinity_date } from "../models/OrdersDB";
 
@@ -22,97 +23,8 @@ const takeOrderStyles = StyleSheet.create({
     items: {
         margin: 20,
         width: "100%"
-    },
-    picker: {
-        marginLeft: 20,
-        height: 50
     }
 });
-
-/**
- * Properties of `MenuPicker`.
- */
-interface IMenuPickerProps {
-    menu_id: number;
-    onChanged: (value: number) => void;
-}
-
-/**
- * A component which generates a picker which user can choose an item from the list.
- */
-class MenuPicker extends React.Component<IMenuPickerProps> {
-    private readonly MAXIMUM_ORDER_SIZE = 6;
-
-    constructor(props: IMenuPickerProps) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <View style={takeOrderStyles.items}>
-                <Label>{menuDatabase.get(this.props.menu_id).menu_name}</Label>
-                <Item picker>
-                    <Picker
-                        mode="dropdown"
-                        iosIcon={<Icon name="arrow-down" />}
-                        selectedValue={"key0"}
-                        onValueChange={(val) => {
-                            this.props.onChanged(val);
-                        }}
-                        style= {takeOrderStyles.picker}
-                    >
-                        {
-                            Array.from(Array(this.MAXIMUM_ORDER_SIZE).keys())
-                                .map((id: number) => (
-                                    <Picker.Item label={`${id}個`} key={`menu${this.props.menu_id}-${id}`} value={id} />
-                                ))
-                        }
-                    </Picker>
-                </Item>
-            </View>
-        );
-    }
-}
-
-/**
- * Properties of `TableIDPicker`.
- */
- interface ITableIDPickerProps {
-    onChanged: (value: number) => void;
-}
-
-/**
- * A component which generates a picker which user can specify a table.
- */
-class TableIDPicker extends React.Component<ITableIDPickerProps> {
-    private readonly MAXIMUM_TABLE_SIZE = 6;
-
-    render() {
-        return (
-            <View style={takeOrderStyles.items}>
-                <Label>席番号</Label>
-                <Item picker>
-                    <Picker
-                        mode="dropdown"
-                        iosIcon={<Icon name="arrow-down" />}
-                        selectedValue={"key0"}
-                        onValueChange={(val) => {
-                            this.props.onChanged(val);
-                        }}
-                        style= {takeOrderStyles.picker}
-                    >
-                        {
-                            Array.from(Array(this.MAXIMUM_TABLE_SIZE).keys())
-                                .map((id: number) => (
-                                    <Picker.Item label={`${id + 1}番`} key={`table${id}`} value={id} />
-                                ))
-                        }
-                    </Picker>
-                </Item>
-            </View>
-        );
-    }
-}
 
 /**
  * Properties of `TakeOrder`.
@@ -179,6 +91,32 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
         };
     }
 
+    renderTablePicker(): JSX.Element {
+        return (
+            <ContentsPicker
+                title="席番号"
+                onChanged={this.onTableIDChanged}
+                label={(val) => `${val + 1}番`}
+            />
+        )
+    }
+
+    renderMenuPickers(): JSX.Element[] {
+        const menuArrays = Array.from(Array(menuDatabase.size()).keys());
+
+        return menuArrays.map((id) => {
+            const menuName = menuDatabase.get(id).menu_name;
+
+            return (
+                <ContentsPicker
+                    title={menuName}
+                    onChanged={this.onMenuItemChanged(id)}
+                    label={(val) => `${val}個`}
+                />
+            );
+        });
+    }
+
     render() {
         return (
             <View style={takeOrderStyles.container}>
@@ -186,16 +124,8 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
                     伝票をとる
                 </H1>
                 <Form style={takeOrderStyles.form}>
-                    <TableIDPicker onChanged={this.onTableIDChanged} />
-                    {
-                        Array.from(Array(menuDatabase.size()).keys())
-                            .map((id) => (
-                                <MenuPicker
-                                    menu_id={id}
-                                    onChanged={this.onMenuItemChanged(id)}
-                                />
-                            ))
-                    }
+                    {this.renderTablePicker()}
+                    {this.renderMenuPickers()}
                     <Button block style={takeOrderStyles.items} onPress={this.onPostButtonClicked}>
                         <Text>伝票を発行</Text>
                     </Button>
@@ -210,4 +140,4 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
  *
  * For more information, please refer `TakeOrder` or read react-router documentations.
  */
- export const TakeOrderWithRouter = withRouter(TakeOrder);
+export const TakeOrderWithRouter = withRouter(TakeOrder);
