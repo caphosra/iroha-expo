@@ -24,18 +24,15 @@ export default class App extends React.Component<IAppProps, IAppState> {
         };
     }
 
-    componentWillMount() {
-        Font.loadAsync({
+    async componentDidMount() {
+        await Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
             Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
             Ionicons: require("native-base/Fonts/Ionicons.ttf")
-        })
-        .then(() => {
-            console.log("Load fonts successfully");
+        });
 
-            this.setState({
-                isReady: true
-            });
+        this.setState({
+            isReady: true
         });
     }
 
