@@ -61,6 +61,8 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
     }
 
     onPostButtonClicked = async () => {
+        this.state.order.posted = new Date(Date.now());
+
         await ordersDatabase.post(this.state.order);
 
         Alert.alert(
@@ -112,6 +114,7 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
                     title={menuName}
                     onChanged={this.onMenuItemChanged(id)}
                     label={(val) => `${val}個`}
+                    key={`menu-picker-${id}`}
                 />
             );
         });
