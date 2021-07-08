@@ -61,7 +61,7 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
     }
 
     onPostButtonClicked = async () => {
-        this.state.order.posted = new Date(Date.now());
+        this.state.order.posted = new Date();
 
         await ordersDatabase.post(this.state.order);
 
