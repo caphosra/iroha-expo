@@ -52,7 +52,7 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
         this.state = {
             order_id: Math.floor(Math.random() * this.MAXIMUM_ORDER_ID),
             table_id: 1,
-            orders: new Array<number>(menuDatabase.size())
+            orders: new Array<number>(menuDatabase.menu.length)
         };
     }
 
@@ -99,10 +99,10 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
     }
 
     renderMenuPickers(): JSX.Element[] {
-        const menuArrays = Array.from(Array(menuDatabase.size()).keys());
+        const menuArrays = Array.from(Array(menuDatabase.menu.length).keys());
 
         return menuArrays.map((id) => {
-            const menuName = menuDatabase.get(id).menu_name;
+            const menuName = menuDatabase.get_by_id(id).menu_name;
 
             return (
                 <ContentsPicker

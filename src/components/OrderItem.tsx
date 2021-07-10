@@ -78,7 +78,7 @@ export class OrderItem extends React.Component<IOrderItemProps> {
 
     renderOrderItem(val: number, menu_id: number): JSX.Element | null {
         if (val) {
-            const menuName = menuDatabase.get(menu_id).menu_name;
+            const menuName = menuDatabase.get_by_id(menu_id).menu_name;
 
             return (
                 <Text style={orderItemStyles.orderItem}>
