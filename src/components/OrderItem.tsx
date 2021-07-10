@@ -50,7 +50,7 @@ interface IOrderItemProps {
  */
 export class OrderItem extends React.Component<IOrderItemProps> {
     renderWaitTimeView(): JSX.Element {
-        const waitingTimeMilliseconds = Date.now() - this.props.order.posted.getTime();
+        const waitingTimeMilliseconds = Date.now() - this.props.order.posted;
         const waitingTimeMinutes = Math.floor(waitingTimeMilliseconds / (1000 * 60));
 
         if (waitingTimeMinutes < 5) {
