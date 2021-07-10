@@ -68,6 +68,8 @@ export class OrderListView extends React.Component<IOrderListViewProps, IOrderLi
             });
         }
         catch(err) {
+            console.error(err);
+
             this.setState({
                 loadStatus: OrderListViewStatus.FAILED_TO_LOAD,
             });

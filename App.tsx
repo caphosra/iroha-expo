@@ -3,6 +3,7 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 
 import { MainContent } from "./src/MainContent";
+import { menuDatabase } from "./src/models/MenuDB";
 
 interface IAppProps { }
 
@@ -30,6 +31,8 @@ export default class App extends React.Component<IAppProps, IAppState> {
             Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
             Ionicons: require("native-base/Fonts/Ionicons.ttf")
         });
+
+        await menuDatabase.init();
 
         this.setState({
             isReady: true

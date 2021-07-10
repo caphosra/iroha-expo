@@ -8,9 +8,11 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject",
-    "clean": "del node_modules /Q && del yarn.lock && yarn cache clean"
+    "ts:start": "yarn workspace test start"
   },
+  "workspaces": [
+    "test"
+  ],
   "dependencies": {
     "expo": "42.0.0",
     "expo-app-loading": "^1.1.2",

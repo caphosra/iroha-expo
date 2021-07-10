@@ -5,7 +5,7 @@ import { RouteComponentProps, withRouter } from "react-router-native";
 
 import { ContentsPicker } from "./ContentsPicker";
 import { menuDatabase } from "../models/MenuDB";
-import { IOrderInfo, ordersDatabase, get_infinity_date } from "../models/OrdersDB";
+import { ordersDatabase } from "../models/OrdersDB";
 
 /**
  * Styles for `TakeOrder`.
@@ -35,7 +35,9 @@ interface ITakeOrderProps extends RouteComponentProps { }
  * State of `TakeOrder`.
  */
 interface ITakeOrderState {
-    order: IOrderInfo
+    order_id: number;
+    table_id: number;
+    orders: number[];
 }
 
 /**
@@ -48,22 +50,18 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
         super(props);
 
         this.state = {
-            order: {
-                order_id: Math.floor(Math.random() * this.MAXIMUM_ORDER_ID),
-                table_id: 1,
-                posted: get_infinity_date(),
-                ready: get_infinity_date(),
-                served: get_infinity_date(),
-                paid: get_infinity_date(),
-                orders: new Array<number>(menuDatabase.size())
-            }
+            order_id: Math.floor(Math.random() * this.MAXIMUM_ORDER_ID),
+            table_id: 1,
+            orders: new Array<number>(menuDatabase.menu.length)
         };
     }
 
     onPostButtonClicked = async () => {
-        this.state.order.posted = new Date();
-
-        await ordersDatabase.post(this.state.order);
+        await ordersDatabase.post(
+            this.state.order_id,
+            this.state.table_id,
+            this.state.orders
+        );
 
         Alert.alert(
             "注文完了!",
@@ -74,21 +72,18 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
     }
 
     onTableIDChanged = (table_id: number) => {
-        let order = this.state.order;
-        order.table_id = table_id;
-
         this.setState({
-            order: order
+            table_id: table_id
         });
     }
 
     onMenuItemChanged = (order_id: number) => {
         return (val: number) => {
-            let order = this.state.order;
-            order.orders[order_id] = val;
+            let orders = this.state.orders;
+            orders[order_id] = val;
 
             this.setState({
-                order: order
+                orders: orders
             });
         };
     }
@@ -104,10 +99,10 @@ export class TakeOrder extends React.Component<ITakeOrderProps, ITakeOrderState>
     }
 
     renderMenuPickers(): JSX.Element[] {
-        const menuArrays = Array.from(Array(menuDatabase.size()).keys());
+        const menuArrays = Array.from(Array(menuDatabase.menu.length).keys());
 
         return menuArrays.map((id) => {
-            const menuName = menuDatabase.get(id).menu_name;
+            const menuName = menuDatabase.get_by_id(id).menu_name;
 
             return (
                 <ContentsPicker

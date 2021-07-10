@@ -50,7 +50,7 @@ interface IOrderItemProps {
  */
 export class OrderItem extends React.Component<IOrderItemProps> {
     renderWaitTimeView(): JSX.Element {
-        const waitingTimeMilliseconds = Date.now() - this.props.order.posted.getTime();
+        const waitingTimeMilliseconds = Date.now() - this.props.order.posted;
         const waitingTimeMinutes = Math.floor(waitingTimeMilliseconds / (1000 * 60));
 
         if (waitingTimeMinutes < 5) {
@@ -78,7 +78,7 @@ export class OrderItem extends React.Component<IOrderItemProps> {
 
     renderOrderItem(val: number, menu_id: number): JSX.Element | null {
         if (val) {
-            const menuName = menuDatabase.get(menu_id).menu_name;
+            const menuName = menuDatabase.get_by_id(menu_id).menu_name;
 
             return (
                 <Text style={orderItemStyles.orderItem}>
