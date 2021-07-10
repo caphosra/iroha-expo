@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (_, res) => {
-    res.redirect("https://github.com/capra314cabra/iroha");
+    res.status(200).send("iroha");
 });
 
 app.post("/orders", async (req, res) => {
