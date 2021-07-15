@@ -20,6 +20,12 @@ app.get("/", (_, res) => {
     res.status(200).send("iroha");
 });
 
+app.get("/orders", (_, res) => {
+    console.log("Got");
+
+    res.status(200).send(order_lists);
+});
+
 app.post("/orders", async (req, res) => {
     let body = req.body;
 
@@ -99,7 +105,7 @@ app.put("/orders/:id", (req, res) => {
             })
             ?.index;
 
-        if (info_index) {
+        if (info_index != undefined) {
             const ready = Number(req.body.ready);
             if (ready) {
                 order_lists[info_index].ready = ready;
